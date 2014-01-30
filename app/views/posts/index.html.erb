@@ -1,0 +1,11 @@
+<h1>Posts made by <%= current_user.email %></h1>
+<ul>
+<% @posts.each do |post| %>
+<li><%= link_to post.title, post_url(post) %></li>
+<% end %>
+</ul>
+<br>
+<%= link_to "Create a New Post", new_post_url %>
+<br>
+
+<%= link_to "Back to Profile", user_url(current_user)%>

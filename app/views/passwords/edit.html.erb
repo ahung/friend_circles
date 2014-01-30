@@ -1,0 +1,14 @@
+<h1>Enter a new password</h1>
+
+
+
+<form action="/password" method="post">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+  <input type="hidden" name="pw_reset_token" value="<%= @pw_reset_token %>">
+  <input type="submit" value="Change Password">
+</form>

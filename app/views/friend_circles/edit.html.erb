@@ -1,0 +1,5 @@
+<h1>Edit Your Friend Circle</h1>
+
+<form action="<%= user_friend_circle_url(@user, @friend_circle) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <%= render "form" %>

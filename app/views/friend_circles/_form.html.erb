@@ -1,0 +1,17 @@
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="friend_circle[user_id]" value= "<%= @user.id %>">
+  <input type="hidden" name="friend_circle[friend_ids][]" value="">
+  <label for="name">Name</label>
+  <input type="text" name="friend_circle[name]" id="name" value="<%= @friend_circle.name %>">
+  <br>
+  Select Friends To Include In This Circle
+  <br>
+  <% User.all.each do |user| %>
+  <% next if user == @user%>
+  <% html_id = "friend_circle_memberships_#{user.id}" %>
+  <input type="checkbox" name="friend_circle[friend_ids][]" value="<%=user.id %>" id="<%= html_id %>" <%= "checked" if @friend_circle.friend_ids.include?(user.id)%>>
+  <label for="<%= html_id %>"><%= user.email %></label>
+  <% end %>
+  <br>
+  <input type="submit">
+</form>

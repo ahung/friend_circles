@@ -1,0 +1,18 @@
+<h1><%= @friend_circle.name %></h1>
+
+Currently in this Circle:
+<ul>
+  <% @friend_circle.friend_circle_memberships.each do |member| %>
+  <li> <%= member.user.email %></li>
+  <% end %>
+</ul>
+
+<br>
+
+<%= link_to "Edit Circle", edit_user_friend_circle_url(@friend_circle.user, @friend_circle)%>
+
+<br>
+<%= button_to "Delete Circle", user_friend_circle_url(@friend_circle.user, @friend_circle), :method  => :delete %>
+<br>
+
+<%= link_to "Back to Profile", user_url(@friend_circle.user)%>

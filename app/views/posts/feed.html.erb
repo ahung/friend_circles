@@ -1,0 +1,25 @@
+<h1>Posts Shared With You:</h1>
+<ul>
+<% @posts.each do |post| %>
+<li>Title:
+<%= post.title %>
+<br>
+Body:
+<%= post.body %>
+<br>
+Links:
+<ul>
+  <% post.links.each do |link| %>
+  <li><%= link_to link.title, link.url %></li>
+  <% end %>
+</ul>
+Author:
+<%= post.user.email%>
+<br>
+</li>
+<br>
+<% end %>
+</ul>
+<br>
+
+<%= link_to "Back to Profile", user_url(current_user)%>

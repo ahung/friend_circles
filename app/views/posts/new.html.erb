@@ -1,0 +1,30 @@
+<h1>Create A Post</h1>
+
+
+<form action="/posts" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="post[user_id]" value="<%= current_user.id %>">
+  <label for="post_title">Title</label>
+  <input type="text" name="post[title]" id="post_title">
+  <br>
+  <label for="body">Body</label>
+  <input type="text" name="post[body]" id="body">
+  <br>
+  <% @post.links.each do |link| %>
+  <label for="link_title<%= link.object_id %>">Link Title</label>
+  <input name="posts[links_attributes][<%= link.object_id%>][title]" id="link_title<%= link.object_id %>">
+  <label for="link_url<%= link.object_id %>">Link URL</label>
+  <input name="posts[links_attributes][<%= link.object_id%>][url]" id="link_url<%= link.object_id %>">
+  <br>
+  <% end %>
+  
+  Select Circles to Share This Post With:
+  <% current_user.friend_circles.each do |friend_circle| %>
+  <% html_id = "friend_circle_#{friend_circle.id}"%>
+  <br>
+  <input type="checkbox" name="post[shared_circle_ids][]" id="<%= html_id %>" value="<%= friend_circle.id%>">
+  <label for="<%= html_id %>"><%= friend_circle.name %></label>
+  <br>
+  <% end %> 
+  <input type="submit" value="Create Post">
+</form>
